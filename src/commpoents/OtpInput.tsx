@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -6,6 +6,8 @@ import {
   StyleProp,
   TextStyle,
   ViewStyle,
+  Text,
+  TouchableOpacity,
 } from 'react-native';
 
 interface OTPInputProps {
@@ -13,6 +15,10 @@ interface OTPInputProps {
   onComplete: (otp: string) => void; // Callback when OTP is entered
   containerStyle?: StyleProp<ViewStyle>; // Custom container style
   inputStyle?: StyleProp<TextStyle>; // Custom input style
+  title?: string; // Title of the OTP screen
+  subtitle?: string; // Subtitle for the OTP screen
+  onResend?: () => void; // Callback for the resend button
+  resendDelay?: number; // Time delay for resend button (in seconds)
 }
 
 const OTPInput: React.FC<OTPInputProps> = ({
@@ -20,9 +26,23 @@ const OTPInput: React.FC<OTPInputProps> = ({
   onComplete,
   containerStyle,
   inputStyle,
+  title = 'Enter OTP',
+  subtitle = 'We have sent a code to your phone number.',
+  onResend,
+  resendDelay = 30,
 }) => {
   const [otp, setOtp] = useState<string[]>(Array(numberOfDigits).fill(''));
+  const [resendTimer, setResendTimer] = useState(resendDelay);
   const inputsRef = useRef<(TextInput | null)[]>([]);
+
+  useEffect(() => {
+    if (resendTimer > 0) {
+      const timer = setInterval(() => {
+        setResendTimer((prev) => prev - 1);
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [resendTimer]);
 
   const handleInputChange = (text: string, index: number) => {
     if (text.length > 1) return; // Restrict input to one character
@@ -57,23 +77,45 @@ const OTPInput: React.FC<OTPInputProps> = ({
     }
   };
 
+  const handleResend = () => {
+    setResendTimer(resendDelay); // Reset the timer
+    onResend?.(); // Trigger resend callback
+  };
+
   return (
-    <View style={[styles.container, containerStyle]}>
-      {Array.from({ length: numberOfDigits }).map((_, index) => (
-        <TextInput
-          key={index}
-          ref={(ref) => (inputsRef.current[index] = ref)}
-          style={[styles.input, inputStyle]}
-          keyboardType="numeric"
-          maxLength={1}
-          value={otp[index]}
-          onChangeText={(text) => handleInputChange(text, index)}
-          onKeyPress={({ nativeEvent }) =>
-            handleKeyPress(nativeEvent.key, index)
-          }
-          autoFocus={index === 0}
-        />
-      ))}
+    <View style={styles.wrapper}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>{subtitle}</Text>
+
+      <View style={[styles.container, containerStyle]}>
+        {Array.from({ length: numberOfDigits }).map((_, index) => (
+          <TextInput
+            key={index}
+            ref={(ref) => (inputsRef.current[index] = ref)}
+            style={[styles.input, inputStyle]}
+            keyboardType="numeric"
+            maxLength={1}
+            value={otp[index]}
+            onChangeText={(text) => handleInputChange(text, index)}
+            onKeyPress={({ nativeEvent }) =>
+              handleKeyPress(nativeEvent.key, index)
+            }
+            autoFocus={index === 0}
+          />
+        ))}
+      </View>
+
+      <View style={styles.resendContainer}>
+        {resendTimer > 0 ? (
+          <Text style={styles.resendText}>
+            Resend code in {resendTimer}s
+          </Text>
+        ) : (
+          <TouchableOpacity onPress={handleResend}>
+            <Text style={styles.resendButton}>Resend Code</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 };
@@ -81,6 +123,25 @@ const OTPInput: React.FC<OTPInputProps> = ({
 export default OTPInput;
 
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+    paddingHorizontal: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5F5F5',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+  },
+  subtitle: {
+    fontSize: 14,
+    color: '#666',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
   container: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -98,5 +159,17 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
     color: '#333',
     backgroundColor: '#fff',
+  },
+  resendContainer: {
+    marginTop: 20,
+  },
+  resendText: {
+    fontSize: 14,
+    color: '#888',
+  },
+  resendButton: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#007BFF',
   },
 });
