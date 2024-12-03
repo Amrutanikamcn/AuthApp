@@ -1,5 +1,7 @@
 // Define the theme structure
 export interface Theme {
+    primary:string,
+    secondory:string
     background: string;
     textColor: string;
     textColorSecondary:string
@@ -13,6 +15,8 @@ export interface Theme {
   
   // Default theme values
 export const defaultTheme: Theme = {
+    primary:'#007BFF',
+    secondory:'pink',
     background: 'white',
     textColor: 'black',
     textColorSecondary:'#555',

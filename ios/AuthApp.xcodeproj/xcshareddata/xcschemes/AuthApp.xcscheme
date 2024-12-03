@@ -13,7 +13,7 @@
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
+               BuildableIdentifier = "background"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
                BuildableName = "AuthApp.app"
                BlueprintName = "AuthApp"
@@ -31,7 +31,7 @@
          <TestableReference
             skipped = "NO">
             <BuildableReference
-               BuildableIdentifier = "primary"
+               BuildableIdentifier = "background"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
                BuildableName = "AuthAppTests.xctest"
                BlueprintName = "AuthAppTests"
@@ -53,7 +53,7 @@
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
-            BuildableIdentifier = "primary"
+            BuildableIdentifier = "background"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "AuthApp.app"
             BlueprintName = "AuthApp"
@@ -70,7 +70,7 @@
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
-            BuildableIdentifier = "primary"
+            BuildableIdentifier = "background"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
             BuildableName = "AuthApp.app"
             BlueprintName = "AuthApp"

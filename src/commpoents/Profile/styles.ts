@@ -23,7 +23,7 @@ const getProfileStyles = (theme: Theme) =>
       borderRadius: 50,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: theme.background,
+      backgroundColor: theme.secondory,
     } ,
     placeholderText: {
       color: theme.textColor,
