@@ -3,7 +3,6 @@ import {View, Alert, Text} from 'react-native';
 import Login from '../commpoents/Login/Login';
 import {useNavigation} from '@react-navigation/native';
 
-
 const LoginScreen = () => {
   const navigation = useNavigation<any>();
   const handleLoginPress = (credentials: {
@@ -31,11 +30,9 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={{flex: 1,}}>
+    <View style={{flex: 1}}>
       <Login
-        imageUri={{
-          uri: 'https://fastly.picsum.photos/id/700/536/354.jpg?hmac=RabYeBoFcyq9_ShFdPlVLbZu-TENTj3HGjjkrx9qfyM',
-        }}
+        imageUri={require('../assest/Login.jpg')}
         isMobile={false} // Change to true for mobile login
         onLoginPress={handleLoginPress}
         title="Welcome"
@@ -43,16 +40,15 @@ const LoginScreen = () => {
         subTitle="Login with Email and password"
         signup="Sign Up"
         styles={{
-         containerStyle: {flex:1},
-       //   titleStyle: {color: '#444'},
+          containerStyle: {flex: 1},
+          //   titleStyle: {color: '#444'},
           buttonStyle: {height: 50},
 
-          inputStyle: {height: 45, borderRadius: 10},
+          inputStyle: {height: 45, borderRadius: 10, paddingRight: 10},
         }}
         onSignupPress={handleSignupPress}
         onForgotPasswordPress={handleForgotPasswordPress}
       />
-      
     </View>
   );
 };

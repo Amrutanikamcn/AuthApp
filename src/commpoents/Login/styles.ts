@@ -18,9 +18,10 @@ export const getLoginStyles = (theme: Theme) =>
       color: theme.textColor,
     },
     image: {
-      width: 100,
-      height: 100,
+      width: 200,
+      height: 200,
       marginVertical: 20,
+      backgroundColor:theme.borderColor
     },
     title: {
       fontSize: 24,

@@ -1,28 +1,29 @@
 // Define the theme structure
 export interface Theme {
-    primary:string,
-    secondory:string
-    background: string;
-    textColor: string;
-    textColorSecondary:string
-    borderColor:string
-    inputBackground:string
-    buttonBackground:string
-    buttonTextColor:string
-    linkColor:string
-  }
+  primary: string;
+  secondory: string;
+  background: string;
+  textColor: string;
+  textColorSecondary: string;
+  borderColor: string;
+  inputBackground: string;
+  buttonBackground: string;
+  buttonTextColor: string;
+  linkColor: string;
+  modalBackagound: string;
+}
 
-  
-  // Default theme values
+// Default theme values
 export const defaultTheme: Theme = {
-    primary:'#007BFF',
-    secondory:'pink',
-    background: 'white',
-    textColor: 'black',
-    textColorSecondary:'#555',
-    borderColor:'#DDD',
-    inputBackground:'#fff',
-    buttonBackground:'#007BFF',
-    buttonTextColor:'#fff',
-    linkColor:'#007BFF'
-  };
+  primary: '#007BFF',
+  secondory: 'pink',
+  background: 'white',
+  textColor: 'black',
+  textColorSecondary: '#555',
+  borderColor: '#DDD',
+  inputBackground: '#fff',
+  buttonBackground: '#007BFF',
+  buttonTextColor: '#fff',
+  linkColor: '#007BFF',
+  modalBackagound: 'rgba(0, 0, 0, 0.5)',
+};

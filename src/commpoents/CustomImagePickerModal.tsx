@@ -59,20 +59,20 @@ const ImagePickerModal: React.FC<ImagePickerModalProps> = ({
       animationType="slide"
       visible={visible}
       onRequestClose={onClose}>
-      <View style={[styles.modalContainer, modalStyle]}>
-        <View style={[styles.optionsContainer,{backgroundColor:theme.buttonBackground},] }>
+      <View style={[styles.modalContainer,{backgroundColor:theme.modalBackagound}, modalStyle]}>
+        <View style={[styles.optionsContainer,{backgroundColor:theme.background},] }>
           <TouchableOpacity
-            style={[styles.button, buttonStyle]}
+            style={[styles.button,{backgroundColor:theme.primary}, buttonStyle]}
             onPress={openCamera}>
-            <Text style={[styles.buttonText,{backgroundColor:theme.buttonBackground}, buttonTextStyle]}>Open Camera</Text>
+            <Text style={[styles.buttonText,buttonTextStyle]}>Open Camera</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button, buttonStyle]}
+            style={[styles.button,{backgroundColor:theme.primary}, buttonStyle]}
             onPress={openGallery}>
-            <Text style={[styles.buttonText,{backgroundColor:theme.buttonBackground}, buttonTextStyle]}>Open Gallery</Text>
+            <Text style={[styles.buttonText, buttonTextStyle]}>Open Gallery</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={[styles.button,,{backgroundColor:theme.buttonBackground},  buttonStyle]}
+            style={[styles.button,{backgroundColor:theme.primary},  buttonStyle]}
             onPress={onClose}>
             <Text style={[styles.buttonText, buttonTextStyle]}>Cancel</Text>
           </TouchableOpacity>
@@ -87,7 +87,6 @@ export default ImagePickerModal;
 const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-end',
   },
   optionsContainer: {
@@ -97,6 +96,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   button: {
+   // backgroundColor:'red',
     padding: 15,
     borderRadius: 10,
     marginVertical: 5,
